@@ -1,19 +1,19 @@
 HTML --> Hyper Text Makrup Language
 
---------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 <!DOCTYPE html>				//////this is the document type of the file that is html5   |
-<html lang="en">				/////this is for the language type of the document		|																
-<head>															|
-    <meta charset="UTF-8">												|
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">				|
-    <title>web page title</title>											|
-</head>															|
-<body>															|
-						///this is where the thmk code is been written inside of	|
-</body>															|
-</html>															|
-																|
---------------------------------------------------------------------------------------------------
+<html lang="en">				/////this is for the language type of the document  |													                                                                                    |
+<head>												    |
+    <meta charset="UTF-8">									    |
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">		            |
+    <title>web page title</title>								    |
+</head>												    |
+<body>												    |
+				  ///this is where the thmk code is been written inside of	    |
+</body>												    |
+</html>												    |
+												    |
+----------------------------------------------------------------------------------------------------
 <h1,h2,h3,h4,h5,h6/> this all are the heading block level element
 <p> it is a paragraph tag and it is a block level element
 <a href="..." ref=".." >this is a anchor tag also knows as link tag <a/>   inline element
@@ -51,13 +51,13 @@ style="background-color: red"  this for the background color
 
 ----------------------------all the above text formating is inline elements---------------------------
 
- -----------------------------------------------------------------------------
+ -------------------------------------------------------------------------------
 |  	HTML elements can be broadly categorized into one of two categories:	|
-|													|
-|   		Inline Elements: <span>, <a>, <strong>, <img> etc.			|
-|    		Block Elements: <p>, <div>, <h1>, <figure> etc.				|
-|													|
--------------------------------------------------------------------------------	
+|										|
+|   		Inline Elements: <span>, <a>, <strong>, <img> etc.		|
+|    		Block Elements: <p>, <div>, <h1>, <figure> etc.			|
+|										|
+--------------------------------------------------------------------------------	
 
 HTML comment => <!-- Text here -->
 	
@@ -178,3 +178,41 @@ tr:hover {background-color: #D6EEEE;}
 <dl> description list
 <dt>  defines the term (name)
 <dd>   describes each term
+
+
+<---------In-line vs Block level elements ---------->
+ Block-level Elements => always starts on a new line,
+
+| <address>   | <article>    | <aside>      | <blockquote>  |
+| <canvas>    | <dd>         | <div>        | <dl>          |
+| <dt>        | <fieldset>   | <figcaption> | <main>        |
+| <figure>    | <footer>     | <form>       | <nav>         |
+| <h1>-<h6>   | <header>     | <hr>         | <noscript>    |
+| <li>        | <ol>         | <p>          | <pre>         |
+| <section>   | <table>      | <tfoot>      | <ul>          |
+| <video>     |
+
+
+
+
+Inline Elements => does not start on a new line, only takes up as much width
+
+| <a>      | <abbr>   | <acronym> | <b>      |
+| <bdo>    | <big>    | <br>      | <button> |
+| <cite>   | <code>   | <dfn>     | <em>     |
+| <i>      | <img>    | <input>   | <kbd>    |
+| <label>  | <map>    | <object>  | <output> |
+| <q>      | <samp>   | <script>  | <select> |
+| <small>  | <span>   | <strong>  | <sub>    |
+| <sup>    | <textarea>| <time>   | <tt>     |
+| <var>    |
+ 
+--<div> element is used as a container for other HTML elements.			
+ <style>
+div {			//to assign the div inside elements to be inside 
+  width:300px;
+  margin:auto;
+}
+</style> 
+
+
