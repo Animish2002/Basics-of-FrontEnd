@@ -1,0 +1,22 @@
+Array Function
+
+1) concat -(joins) two or more arrays
+2) every -  method executes a function for each array element
+3) filter - creates a new array filled with elements that pass a test provided by a function.
+4) foreach
+5) indexOf - value of the first element with a specified value
+6) join
+7) lastIndexOf - index of the last element with a specified value
+8) map - 
+9) pop - removes the last element of an array.
+10) push - adds new items to the end of an array.
+11) reduce 
+12) reduceRight
+13) reverse - reverses the order of the elements in an array
+14) shift - removes the first item of an array 
+15) slice - returns selected array elements as a new array
+16) some
+17) sort - sorts the elements of an array.
+18) splice => add/remove specific element in the array
+19) toString() - method returns a string with all array values separated by commas
+20) unshift() - adds new items to the beginning of an array

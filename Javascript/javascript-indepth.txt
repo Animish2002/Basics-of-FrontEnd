@@ -1,0 +1,1010 @@
+
+Compiled language: whole code is compiled first of all and it will create optimised version of that code and then it gets executed e.g C, C++, java
+
+Interpretter: takes code and it starts executing code line by line, it does not know what will happen in next line, that how code is executed
+
+Javascript is Interpretted + compiler language
+
+Java script is synchronous single threaded language
+Lossely typed language
+
+1) Evert thing happens in java script is in "Execution Context"
+
+Execution Context has 2 component:
+-----------------------------------------------------------------
+Memory / variable env           | code / thread of execution	|
+-----------------------------------------------------------------
+This is were every variable	| every line of code executed	|
+and function is stored as       |				|
+key value pair                 	| one command at a time in a	|
+                 		| paticular sequence		|
+                 		|				|
+                 		|				|
+                 		|				|
+-----------------------------------------------------------------
+
+2) Execution context is create in two phases
+	1) Memory creation (phase 1): javascript allocates memory space for global variable and functions
+		when varibale: its stores undefined
+		in function: it stores whole code of function
+
+	2) Code execution (phase 2):
+
+	var n = 2;
+	function square(num){
+		var ans = num * num;
+		return ans;
+	}
+	var square2 = square(n);
+	var square3 = square(4); 
+
+		    Global excution context
+-----------------------------------------------------------------
+Memory / phase 1                | code / phase 2		|
+-----------------------------------------------------------------
+ n: undefined			| 	value assigned to n=2	|
+ square: {...}			| square2(n) called		|
+ square2: undefined		| Local execution context 	|
+ square3: undefined		|-------------------------------|
+ 			        |memory 	|code		|
+ 		                |-------------------------------|
+                 		| num:undefined	| num = 2	|
+                 		| ans:undefined | ans= num*num	|
+                 		|		| ans = 4	|
+                 		|-------------------------------|
+                 		|square2 = 4			|
+                 		|				|
+                     		ABOVE EXECUTION CONTEXT IS DELETED
+ 				| square3(4) called		|
+				| Local execution context 	|
+ 				|-------------------------------|
+ 			        |memory 	|code		|
+ 		                |-------------------------------|
+                 		| num:undefined	| num = 4	|
+                 		| ans:undefined | ans= num*num	|
+                 		|		| ans = 16	|
+                 		|-------------------------------|
+                 		|square3 = 16			|
+                 		|				|
+                 		|				|
+                 		|				|
+                 		|				|
+-----------------------------------------------------------------
+
+   All managed by "call stack"
+	---------
+	|local 2|
+	|Executn|
+	|cntxt	| pop out 1
+	|-------|
+	|local 1| pop out 2
+	|Executn|
+	|cntxt	|
+	---------
+	|Global	| pop out last 
+	|Executn|
+	|cntxt	|
+	---------
+
+3) Hoisting:
+	Hoisting is a phinomenan in javascript were we can access variable and function before initialized it with out any error.
+
+	var x = 10;
+	function getName() { console.log('Power javascript') }
+	> Global
+	  |
+	  | getName: f getName(){...}
+	  |
+	  | x: undefined
+	  |	
+	
+4) Code execution
+
+	var x = 1;
+	function a() {
+		var x = 10;
+		console.log(x);
+	}
+	function b() {
+		var x = 100;
+		console.log(x);
+	}
+	a();
+	b();
+	console.log(x);
+	o/p:
+		10
+		100
+		1
+	First value is verified in local execution context and then moved to above or global execution context
+
+	> Local (inside function scope)
+	  | this: windows
+	  | x: undeined (under the function a & b)	
+	  |
+	> Global
+	  |
+	  | a: f a(){...}
+	  | b: f b(){...}
+	  |
+	  | x: undefined
+	  |
+
+5) Empty js file:
+	will create global execution context
+	allocate memory
+	javascrip engine creates window object & this object (which point to window)
+
+	Global space: any varibale or function not inside function is global space
+
+6) undefined & not defined:
+	undefined: memory allocated but not initilaized
+	not defined: variable is not created
+
+	console.log(x) // undefined
+	console.log(a) // Error not defined
+	var x = 10;
+
+	undefined: is a place holder until variable is assigned some value.
+
+7) Scope:
+	Scope in javascript is directly related lexical environment
+	Lexical environment is its local memory along with its lexical environmet of parent.
+	Lexical means in herachy or sequence
+
+	function a() {
+		var x = 10;
+		function c() { // c function lexically setting in a function
+				// in the memory c will have reference to its parent scope
+		}
+	}
+
+	---------
+	|fun c() |
+	|c memory|
+	|{*****} | reference to function a scope / lexical environment of a
+	|--------|
+	|fun a() | 
+	|a memory|
+	|{*****} | reference to Global scope / lexical environment of global
+	----------
+	|Global	 | 
+	|memory  |
+	|{*****} | reference to null
+	---------
+
+	For lexical environment of global parent is null
+
+	Scope Chain: linking of all the lexical environment and its parent references
+	
+	When we are in c function
+	> Local (inside c function scope)
+	  | 
+	  | this: window	
+	  |
+	> Closure (inside a function scope)
+	  | 
+	  | x: 10
+	  | c: f c() {...}
+	  | this: window
+	  |
+	> Global
+	  |
+	  | a: f a(){...}
+	  |
+
+8) let and const: (TEMPORARY DEAD ZONE: is the time till let variable was hoisted and and initialized a value)
+	let and const are hoisted but in temporary dead zone for the time been
+	
+	console.log(a); // Error ReferenceError: Cannot access 'a' before initilization
+	console.log(x); // Error ReferenceError: x is not defined
+	let a = 10;
+	console.log(a);
+	var b = 20;
+	let a = 15; // Error SyntaxError: Identifier 'a' has already been declared 
+	const c; // Error SyntaxError: Missing initializer in const declaration
+	const c = 15;
+	c = 10; // Error TypeError: Assignment to constant variable 
+	
+	> Script 
+	  | 
+	  | a: 10
+	  | c: 15
+	  |
+	> Global
+	  |
+	  | b: 20
+	  |
+
+	Error types: ReferenceError, SyntaxError & TypeError
+
+9) Block scope: is also known as compound statment (group multiple statments in a block)
+	if(true) // Error SyntaxError: unexpected end of input
+	if(true) true; // valid with one statement
+
+	group of statements 
+	{
+		// add muliple statements
+	}
+
+	{
+		var a = 10;
+		let b = 20;
+		const c = 30; 	
+	}
+	console.log(b): // Error ReferenceError: b is not defined
+
+	> Block 
+	  | 
+	  | b: 20
+	  | c: 30
+	  |
+	> Global
+	  |
+	  | a: 10
+	  |
+
+	Shadowing: 
+		var a = 10;
+		{
+			var a = 100;
+			console.log(a); 
+		}
+		console.log(a);
+		o/p: 
+			100
+			100 // refering same memory space
+		--------------------------------------------
+		let b = 10;
+		{
+			var b = 100;
+			console.log(a); 
+		}
+		console.log(a);
+		o/p: 
+			100
+			10
+	Illegal Shadowing:
+		let a = 10;
+		{
+			var a = 10; // Error SyntaxError: 'a' aready declared
+		}
+
+10) Closures: A function binds together with its lexical environment
+	Function along with its lexical scope bundle
+
+	function x() {
+		var a = 10;
+		function y() {
+			console.log(a);
+		}
+		return y; // when is y was returned than function with its lexical scope was returned 
+	}
+	var z = x();
+	z();
+	o/p: 10
+
+	-----------------------------------------------
+	function z() {
+		var b = 100;
+		function x() {
+			var a = 10;
+			function y() {
+				console.log(a, b);
+			}
+			y(); // when is y was returned than function with its lexical scope was returned 
+		}
+		x();
+	}
+	z();
+
+	> Closure (x)
+	  | 
+	  | a: 10
+	  |
+	> Closure (z)
+	  | 
+	  | b: 100
+	  |
+	> Global
+	  |
+	  | z: f z(){...}
+	  |
+
+11) Clouser Advantages:
+	Modularization and encapsulation
+
+	function counter() {
+		var count = 0;
+		return function increment() {
+			count++;
+			console.log(count);
+		}
+	}
+
+	var counter1 = counter();
+	counter1();
+	counter1();
+	var counter2 = counter();
+	counter2();
+	// o/p:
+		1
+		2
+		1
+
+	Better way
+	function Counter() {
+		var count = 0;
+		this.increment = function() {
+			count++;
+			console.log(count);
+		}
+		this.decrement = function() {
+			count--;
+			console.log(count);
+		}
+	}
+	
+	var counter1 = new Counter();
+	counter1.increment();
+	counter1.decrement();
+
+	Disadvantages:
+		Over consumtion of memory
+		not garbage collected
+		memory leak
+	
+	Garbag Collector: free the memory once its out of scope and unused
+	
+	Relation between Clouser and Garbage collector:
+	
+		function a() {
+			var x = 10;
+			return function b() {
+				console.log(x);
+			}
+		}
+
+		var y = a();
+	Smartly garbag collect: 
+		function a() {
+			var x = 10, z = 21;
+			return function b() {
+				console.log(x);
+			}
+		}
+		
+		// z will be no longer in the memory
+
+12) What is Anonymous function?
+    What are higher order functions?
+    What are first class functions?
+
+	Function statement: function created with function key word
+		function a() { console.log ('a called'); }
+
+	Function expression: 
+		var b = function () {}
+		
+		*Difference statement & expression : HOISTING
+		*if we all b() before it is declared it will throw error "TypeError: b is not a function"
+
+	Function declaration:
+		are same as function statment
+
+	Anonymous function: function without name
+		function () {} // SyntaxError: function statment reqires name
+		anonymous function are used when functions are used as values
+	
+	Named funcion expression:
+		 var b = function xyz() {}
+		xyz() // RefreneceError: xyz is not defined
+
+	Difference between Parameters & Arguments:
+		var b = function (param1, param2) {}
+		// values passed to function are arguments below 1 & 2
+		b(1, 2)  
+
+	First class funcions: The abilty of function to be used as value and can be passed as argument to another function and can be returned from the function is 			      known as first call function;
+		function can be passed as arguments to a function
+		Function that accepts or return a function is called a first class function   
+
+	Arrow functions: 
+		() => {}
+	
+
+13) Callback function: 
+	What is callback function
+
+	Javascript is synchronous and single-threaded language
+
+	Blocking main thread
+
+	Power of callback
+
+	Event listeners
+
+	Closures Demo with event listeners
+
+	Scope demo with event listeners
+	
+	Garbage collection & removeEventListners
+
+	
+14) Event loop:
+
+ Call stack
+ ------	
+ |    |	When a program runs
+ |    |
+ |----|	1) We have Call stack in which,
+ | L  |	2) Global execution context is created
+ | E  |	3) After function get executed
+ |----|	4) Local exceution context is ppoped
+ | G  |	5) After all local execution context get poped from call stack
+ | C  |	6) Global execution get poped out from call stack
+ ------	
+				Javascript runtime environment
+--------------------------------------------------------------------------------------------------------
+ Call stack												|
+-----------------------------------------------> Web api/event Table					|
+|    |	--------------------------------	------------------------				|
+|    |	|microtask queue all promises |		|settimeout/fetch	|All browser apis		|
+|----|	--------------------------------	|dom/domevent		|				|
+|Locl|	  ^ |  hight prorit than queue		|location/etc		|				|
+| EC |	  | |	 				|----------------------	|				|
+|----|	 -----	 ------------------------	|   All CALLBACK	|registration of callback	|
+|Glob|->|Event|->| fun	|	|	|<------|   fun cb()		|				|
+| EC |<-|loop |<-| cb()	|	|	|	-------------------------				|
+------	 -----	 |	|	|	|								|
+	continu	 ------------------------								|
+	monitor	     Callback Queue									|
+--------------------------------------------------------------------------------------------------------
+
+15) Javascript Engine: 
+	Google Chrome: V8 engine
+	old Edge: Chakra
+	firefox: spidermonkey // first javascrip engine created
+
+   
+     How its works
+			
+	Code        : broken into a token for e.g var a = 10; every thing var,a,= and 10 all are token
+	 |            syntax parser: generate - (AST) -> Abstarct syntax tree (type, declaration, value..... tree) // astexplorer.net
+	 |	      AST passed to parsing
+	 |
+	Parsing
+	 |	  : JIT Compilation 
+	 |
+	 |
+	Compilation : 
+	 |		compilation and execution go hand in hand
+	 |
+	Execution
+	 |		memory heap and call stack 
+	 |
+
+	*Mark & sweep: algo for gragbage collection
+	
+
+
+
+16) Prototype:
+
+	let arr = ['Akshay', 'Aditya']
+	
+	arr._proto_ = arr.prototype
+	
+	arr._proto_._proto_._proto_ = null
+
+
+17) Higher order function: The function that accepts or returns a function.
+
+	function x() { console.log('callback fun'); }
+	
+	function y(a) { a(); console.log('higher order fun')}
+
+18) Array:
+	 
+	filter, map, reduce, rightReduce, forEach, push, pop, shift, unshif, some, every, at, findIndex
+	
+	fill(), indexOf, join, reverse, sort, concat, lastIndexOf, find, entries(), copyWithIn, findLast
+	
+	flat, flatMap
+
+	var arr = [1,2,3,4,5,6,7];
+	entires() =>
+		var y = arr.entires(); y.next() // {value:[0,1],done:false}
+	slice(?start, ?end) =>
+		arr.slice(2, 5) // [3,4,5], arr.slice(-2) // [6,7]
+	splice(start, ?deleteCount, ...items) => 
+		arr.splice(1) // removed: [2,3,4,5,6,7], now in arry only [1] is remaining
+		arr.splice(1,3) // removed [2, 3, 4], now in arry only [1, 5, 6, 7] is remaining
+		arr.splice(1, 0, 11,12) // add 11 & 12 into array [1,11,12,2,3,4,5,6,7]
+		arr.splice(1,1) // remove 1 index element
+
+	 arr = [{a:1, b:2}, {a:1, b:3}, {a:4, b:6}, {a:8, b:6}]
+	
+	sort => Actual sorting happens
+		arr.sort((x,y) => x.a > y.a ? 1 : -1) // a in ascending order, [{a:1, b:2}, {a:1, b:3}, {a:4, b:6}, {a:8, b:6}]
+		arr.sort((x,y) => x.a < y.a ? 1 : -1) // a in decending order, [{a:8, b:6}, {a:4, b:6}, {a:1, b:3}, {a:1, b:2}]
+	findIndex =>
+		arr.findIndex((y) => y.a === 8 && y.b === 6) // 3
+	reduce((accumlator, ele)=>{},{}) =>
+		arr.reduce((a,e)=>a+e,10) // 38
+	copyWithin() => 
+		["Banana", "Orange", "Apple", "Mango", "Kiwi", "Papaya"].copyWithin(2,0,2) // Banana,Orange,Banana,Orange,Kiwi,Papaya
+	[1,2,[3,4],[5,6,7]].flat() // [1,2,3,4,5,6,7]
+
+	new Array(7).fill().map((j, i)=>i+1).filter(x=>x%2===0).reduce((a,e) =>a+e,0)
+
+19) String:
+
+	at, charAt, charCodeAt, codePointAt, concat, endsWith, includes, indexOf, lastIndexOf, .length, match, matchAll
+	
+	padEnd, padStart, replaceAll, replace, repeat, search, slice, split, startsWith, substr, substring, toLocaleUpperCase
+
+	toUpperCase, trim, trimEnd, trimStart, trimLeft, trimRight
+	
+	var y = "abcdefgh"
+
+	charCodeAt => similar codePointAt
+		charCodeAt(2) // 99 (c assci value)
+	endsWith(searchStr, ?endPosition) =>
+		y.endsWith('8', 7) // true
+	padEnd(maxCount, replaceString) =>
+		y.padEnd(10, '#') // 'abcdefgh##'
+	padStart(maxCount, replaceString) =>
+		y.padStart(10, '#') // '##abcdefgh'
+	repeat(count) => 
+		y.repeat(2) // abcdefghabcdefgh
+	replace(searchValue, replaceValue/replacer) =>
+		y.replace('ab', 'ba') // bacdefgh
+		'abcabcabcc'.replace(/abc/, (a) => a + 11), 'abc11abcabcc'
+		y.replace(/(a)(b)/, '$2$1') // bacdefgh
+	replaceAll() => 
+		y.replaceAll('ab', 'ba') // bacdefgh
+	search() =>
+		y.search(/e/) // 4 
+	slice(start, end) => 
+		y.slice(1,3) // bc
+	split(splliter/separator, limit) =>
+		y.split('') // ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+		y.split('', 3) // ['a', 'b', 'c']
+	startsWith(searchString, ?position) => 
+		y.startsWith('b', 1) // true
+	substr(from, length) =>
+		y.substr(3) // 'defgh'
+		y.substr(2, 3) // 'cde'
+		y.substr(-5) // 'defgh'
+	substring(start, end) =>
+		y.substring(3) // 'defgh'
+		y.substring(3, 0) // 'abc'
+		y.substring(3, 6) // 'def'
+	toLocaleUpperCase	
+	toUpperCase 
+	toLocaleLowerCase
+	toLowerCase
+	trim
+	trimEnd
+	trimStart
+	trimLeft
+	trimRight
+
+20) Math:
+	abs, ceil, floor, max, min, random 
+
+	abs() => positive value
+		Math.abs(-7.25) // 7.25
+	ceil() => hight number aftre decimal
+		Math.ceil(1.40)	// 2
+		Math.ceil(-5.90) // -5
+	floor() => 
+		Math.floor(1.99); // 1
+	max() => 
+		Math.max(1,2,3) // 3
+		Math.max(...[1,2,3]) // 3
+	min() => 
+		Math.min(1,2,3) // 1
+		Math.min(...[1,2,3]) // 1
+	random() => 
+		Math.random() // 0.73083173171301
+	
+	Math.floor(Math.random() * 6) + 5 // random number between 5 to 10
+
+21) Number: 
+	
+	isFinite, isInteger, isNaN, toFixed, toLocaleString, toPrecision, toString, round
+	
+	toFixed() =>
+		let num = 5.56789;
+		num.toFixed(2);
+		o/p: '5.57'
+	toLocaleString => 
+		let num = 1000000;
+		num.toLocaleString("en-US", {style:"currency", currency:"USD"});
+		o/p: '$1,000,000.00'
+		num.toLocaleString("en-US", {style:"currency", currency:"INR"});
+		o/p: '₹1,000,000.00'
+	toPrecision() => 
+		let num = 13.3714;
+		num.toPrecision(2) // 13
+		num.toPrecision(3) // 13.3
+	toString(radix) => convert to different base
+		let num = 15;
+		num.toString(2); // '1111'
+		num.toString(3); // '120'
+		num.toString(8); // '17'
+		num.toString(10); // '15'
+	round() => round figure
+		Math.round(1.46) // 1
+		Math.round(1.5)	// 2
+
+	let h = '1.2'
+	parseInt(h) // 1
+	parseFloat(h) // 1.2
+	
+	123e5; // 12300000
+	123e-5; // 0.00123
+
+22) Date: 
+	var d = new Date() // 02/16/2022
+	d.getDate() // 16
+	d.getDay() // 3 (Wednesday) (0-6)
+	d.getMonth() // 1 (0-11)
+	d.getFullYear() // 2022
+	d.getTime() // <milliseconds>
+
+	Getting difference between two dates:
+		var date1 = new Date("06/30/2019");
+		var date2 = new Date("07/30/2019");
+		var Difference_In_Time = date2.getTime() - date1.getTime();
+		var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);	
+
+	Date.now() // get time in milli seconds from 1970/1/1
+
+23) Regular expression:
+
+	Modifiers: g,i,m
+	Groups: [abc], [^abc], [0-9], [^0-9], (x|y)
+	Metacharacters: . , \w, \W, \d, \D, \s, \S, \b, \B, \0
+	Quantifiers: +, *, ?, {X}, {X,Y}, {X,}, $, ^, ?=, ?!
+	
+	?= => followedby
+		let text = "Is this all there is";
+		let pattern = /is(?= all)/;
+		console.log(text.match(pattern));
+		o/p: is
+	?! => not followedby
+		let text = "Is this all there is";
+		let pattern = /is(?! all)/gi;
+		console.log(text.match(pattern));
+		o/p: Is, is
+	
+	let text = "1, 100 or 1000?";
+	let pattern = /10?/g;
+	console.log(text.match(pattern));
+	o/p: 1,10,10
+
+24) JS statments:
+
+	for...in: get key of object 
+		var b = new Array(7).fill().map((j,i)=>i+3)
+		for(let a in b) { console.log(a) }
+		o/p: 0..1..2..3..4..5..6
+		
+	for...of: get value of object 
+		var b = new Array(7).fill().map((j,i)=>i+3)
+		for(let a of b) { console.log(a) }
+		o/p: 3..4..5..6..7..8..9
+	
+	continue:
+
+	let text = "";
+	// The first for loop is labeled Loop1:
+	Loop1:
+	for (let i = 0; i < 3; i++) {
+  		text += i + "<br>";
+
+		// The second for loop is labeled Loop2:
+		Loop2:
+  		for (let i = 10; i < 15; i++) {
+    			if (i === 12) continue Loop1;
+    			text += i + "<br>";
+  		}
+	}
+
+	o/p: '0<br>10<br>11<br>1<br>10<br>11<br>2<br>10<br>11<br>'
+	
+25) Object: 
+
+	var f = {a: 1, b: 2, c: 3, d: 4}
+	
+	Object.assign: used to create shadow copy
+		Object.assign({},f)
+
+	Object.defineProperties():
+		Syntax:
+		Object.defineProperties(obj, props)
+		example:
+		Object.defineProperties(object1, {
+  
+					property1: 
+						{
+    
+							value: 42,
+    
+							writable: true
+  
+						},
+  
+					property2: {}
+					
+					}
+				);
+		configurable, enumerable, value, writable, get, set
+
+	Object.defineProperty()
+		Object.defineProperty(obj, prop, descriptor)
+	
+		Object.defineProperty(object1, 'property1', {
+  			value: 42,
+  			writable: false
+		});
+
+	Object.entries() => Gell all properties and values
+		Object.entries(f)
+		 [['a', 1], ['b', 2], ['c', 3], ['d', 4]]
+	
+	Object.freeze() => freeze values and extension of object, not able to change any thing
+
+	Object.isFrozen()
+
+	Object.getOwnPropertyDescriptor() :
+	
+		const descriptor1 = Object.getOwnPropertyDescriptor(object1, 'property1');
+		Object.getOwnPropertyDescriptor(f,'a')
+		o/p: {value: 1, writable: false, enumerable: true, configurable: false}
+
+  	Object.getOwnPropertyDescriptors():
+		const descriptors1 = Object.getOwnPropertyDescriptors(object1);
+		Object.getOwnPropertyDescriptors(f);
+		o/p: 
+		a: {value: 1, writable: false, enumerable: true, configurable: false}
+		b: {value: 2, writable: false, enumerable: true, configurable: false}
+		c: {value: 3, writable: false, enumerable: true, configurable: false}
+		d: {value: 4, writable: false, enumerable: true, configurable: false}
+	
+	Object.getOwnPropertyNames()
+		console.log(Object.getOwnPropertyNames(object1));
+		Object.getOwnPropertyNames(f)
+		o/p:  ['a', 'b', 'c', 'd']
+
+	Object.keys(): similar to above one 
+
+	Object.preventExtensions(): prevents adding new properties in object at root level
+
+ 	Object.isExtensible(): 
+
+ 	Object.seal():preventing new properties from being added 
+
+ 	Object.isSealed()
+
+ 	Object.values()
+		const object1 = {
+  			a: 'somestring',
+  			b: 42,
+  			c: false
+		};
+	console.log(Object.values(object1));
+	// expected output: Array ["somestring", 42, false]
+
+	obj.hasOwnProperty(prop)
+		o.hasOwnProperty('propOne');
+		j.hasOwnProperty('a') // true
+		j.hasOwnProperty('z') // false
+
+	Object.is(Obj1, Obj2);
+
+	-----------------------------------------------------------------
+	|			  |Create Prop 	|Read	|Update	|Delete	|
+	|-------------------------|-------------|-------|-------|-------|
+	|Object.freeze		  |	X	|  Y	|  X	|  X	|
+	|-------------------------|-------------|-------|-------|-------|
+	|Object.seal		  |	X	|  Y	|  Y	|  X	|
+	|-------------------------|-------------|-------|-------|-------|
+	|Object.preventExtensions |	X	|  Y	|  Y	|  Y	|
+	-----------------------------------------------------------------
+
+26) Promise:
+	Perfomr aync operation , to remove callback hell
+		const myPromise = new Promise((resolve, reject) => {  
+    			let condition;  
+    
+    			if(condition is met) {    
+        			resolve('Promise is resolved successfully.');  
+    			} else {    
+        			reject('Promise is rejected');  
+    			}
+		});
+
+		myPromise.then((message) => { 
+    			console.log(message);
+		}).catch((message) => { 
+    			console.log(message);
+		})
+		.finally(() => { ... });
+
+	1) Promise.all: Promise.all is actually a promise that takes an array of promises as an input (an iterable). Then it gets resolved when all the promises get 			resolved or any one of them gets rejected.
+
+		Promise.all([Promise1, Promise2, Promise3])
+ 			.then(result) => {
+   				console.log(result)
+ 			})
+ 			.catch(error => console.log(`Error in promises ${error}`));
+			
+		Promise.all([Promise.resolve('resolve1'),Promise.resolve('resolve2')]).then(console.log).catch(console.log)
+		// o/p: ['resolve1', 'resolve2']
+			
+		Promise.all([Promise.resolve('resolve'), Promise.reject('reject'),Promise.resolve('resolve')]).then(console.log).catch(console.log)
+		// o/p: reject
+
+	2) Promise.race: The Promise.race() static method accepts a list of promises as an iterable object and returns a new promise that fulfills or rejects as soon as 			there is one promise that fulfills or rejects, with the value or reason from that promise.
+
+		Promise.race([p1, p2])
+    			.then(value => console.log(`Resolved: ${value}`))
+    			.catch(reason => console.log(`Rejected: ${reason}`));
+		
+		Promise.race([Promise.resolve('resolve1'),Promise.resolve('resolve2'), Promise.reject('reject')]).then(console.log).catch(console.log)
+		// o/p: resolve1
+		
+	3) Promise.any: takes array of promises and returns one value if that is resolved. If all are rejected than it will throw error "AggregateError: All promises 				were rejected" 
+	
+		Promise.any([Promise.reject('reject'),Promise.resolve('resolve')]).then(console.log).catch(console.log)
+		// o/p: resolve
+		Promise.any([Promise.reject('reject'),Promise.reject('reject')]).then(console.log).catch(console.log)
+		// o/p: AggregateError: All promises were rejected
+	
+	4) Promise.allSettled: returns status of all the promises if it is resolved or rejected
+	
+		Promise.allSettled([Promise.reject('reject'),Promise.resolve('resolve')]).then(console.log).catch(console.log)
+		// o/p:
+			0: {status: 'rejected', reason: 'reject'}
+			1: {status: 'fulfilled', value: 'resolve'}
+	
+
+	Async & Await:
+		async function foo() {
+			try {
+				const val = await new Promise();
+			} catch(err) {
+				console.log(err)
+			}
+		}
+		async & await shows behaviour like synchronous but not the promise. Async and await uses internally promises. 
+
+27) BOM & DOM :
+	The BOM (Browser Object Model) consists of the objects navigator, history, screen, location and document which are children of window. In the document node is the DOM (Document Object Model), the document object model, which represents the contents of the page. You can manipulate it using javascript.	
+
+28) online offline:
+		window.addEventListener('offline', () => {alert('gela')})
+		window.addEventListener('online', () => {alert('aala')})
+
+29) navigator Object:
+	
+	appCodeName: "Mozilla"
+	appName: "Netscape"
+	appVersion: "5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36"
+	bluetooth: Bluetooth {}
+	clipboard: Clipboard {}
+	connection: NetworkInformation {onchange: null, effectiveType: '4g', rtt: 100, downlink: 2.9, saveData: false}
+	cookieEnabled: true
+	credentials: CredentialsContainer {}
+	deviceMemory: 8
+	doNotTrack: null
+	geolocation: Geolocation {}
+	hardwareConcurrency: 4
+	hid: HID {onconnect: null, ondisconnect: null}
+	ink: Ink {}
+	keyboard: Keyboard {}
+	language: "en-US"
+	languages: (2) ['en-US', 'en']
+	locks: LockManager {}
+	managed: NavigatorManagedData {onmanagedconfigurationchange: null}
+	maxTouchPoints: 0
+	mediaCapabilities: MediaCapabilities {}
+	mediaDevices: MediaDevices {ondevicechange: null}
+	mediaSession: MediaSession {metadata: null, playbackState: 'none'}
+	mimeTypes: MimeTypeArray {0: MimeType, 1: MimeType, application/pdf: MimeType, text/pdf: MimeType, length: 2}
+	onLine: true
+	pdfViewerEnabled: true
+	permissions: Permissions {}
+	platform: "Win32"
+	plugins: PluginArray {0: Plugin, 1: Plugin, 2: Plugin, 3: Plugin, 4: Plugin, PDF Viewer: Plugin, Chrome PDF Viewer: Plugin, Chromium PDF Viewer: Plugin, 	Microsoft Edge PDF Viewer: Plugin, WebKit built-in PDF: Plugin, …}
+	presentation: Presentation {defaultRequest: null, receiver: null}
+	product: "Gecko"
+	productSub: "20030107"
+	scheduling: Scheduling {}
+	serial: Serial {onconnect: null, ondisconnect: null}
+	serviceWorker: ServiceWorkerContainer {controller: null, ready: Promise, oncontrollerchange: null, onmessage: null, onmessageerror: null}
+	storage: StorageManager {}
+	usb: USB {onconnect: null, ondisconnect: null}
+	userActivation: UserActivation {hasBeenActive: true, isActive: true}
+	userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36"
+	userAgentData: NavigatorUAData {brands: Array(3), mobile: false, platform: 'Windows'}
+	vendor: "Google Inc."
+	vendorSub: ""
+	virtualKeyboard: VirtualKeyboard {boundingRect: DOMRect, overlaysContent: false, ongeometrychange: null}
+	wakeLock: WakeLock {}
+	webdriver: false
+	webkitPersistentStorage: DeprecatedStorageQuota {}
+	webkitTemporaryStorage: DeprecatedStorageQuota {}
+
+30) Proxy:
+	Proxy object woud be acting like a layer between operations on an object, 
+	useful for validation and adding custom behaviour 
+
+	const gameSettings = {};
+	const gameSettingsProxy = new Proxy(gameSettings, {
+		get: (o, property) => { // o target object
+			// console.log(o);
+			// console.log(property);
+			return property in o ? o[property] : "decode"; 
+		},
+		set: (o, property, value) => {
+			if(property === 'difficulty' && ['hard', 'modrate', 'easy'].indexOf(value) >= 0){
+            			o[property] = value;
+        		}
+		},
+		has: (o, property) => {
+			if(property === 'difficulty') {
+				return false;
+			}
+		}
+	})
+	gameSettingsProxy.difficulty = "easy"; // easy
+	gameSettingsProxy.difficulty = "none"; // none
+	console.log(gameSettingsProxy.difficulty); // easy
+	console.log('difficulty' in gameSettingsProxy) // false 
+	
+31) Reflect:
+
+	Reflect.apply(target, thisArg, argList); // for functions
+	Reflect.get(target, key, handler); // handler is Proxy. get the value of a property
+	Reflect.set(target, key, value, handler); // handler is Proxy. set the value of a property
+	Reflect.has(target, key);// check if it has a property
+	Reflect.delete(target, key); // like the delete operator
+	Reflect.ownKeys(target); // enumerate through the properties
+
+
+	let alex = {
+		name: 'Alex',
+		id: 93,
+		hello: function(a, b) {
+			console.log(`Hello my name is ${this.name}. ${a} ${b}`);
+		}
+	}
+	
+	Reflect.ownKeys(alex) 
+		// o/p: ['name', 'id', 'hello']
+	Reflect.get(alex, 'id')
+		// o/p: 93
+	Reflect.set(alex, 'id', 94)
+		// o/p: true
+	Reflect.get(alex, 'id')
+		// o/p: 94
+	Reflect.has(alex, 'id')
+		// o/p: true
+	Reflect.apply(alex.hello, alex, Reflect.ownKeys(alex))
+		// o/p: Hello my name is Alex. name id
+	Reflect.defineProperty(alex, 'age', {value: 30, enumerable: false})
+		// o/p: true
+	Reflect.get(alex, 'age')
+		// o/p: 30
+	Reflect.deleteProperty(alex, 'id')
+		// o/p: true
+	Reflect.deleteProperty(alex, 'age')
+		// o/p: false
+	Reflect.get(alex, 'id')
+		// o/p: undefined
+			
