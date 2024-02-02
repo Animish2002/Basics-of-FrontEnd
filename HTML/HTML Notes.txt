@@ -1,0 +1,180 @@
+HTML --> Hyper Text Makrup Language
+
+--------------------------------------------------------------------------------------------------
+<!DOCTYPE html>				//////this is the document type of the file that is html5   |
+<html lang="en">				/////this is for the language type of the document		|																
+<head>															|
+    <meta charset="UTF-8">												|
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">				|
+    <title>web page title</title>											|
+</head>															|
+<body>															|
+						///this is where the thmk code is been written inside of	|
+</body>															|
+</html>															|
+																|
+--------------------------------------------------------------------------------------------------
+<h1,h2,h3,h4,h5,h6/> this all are the heading block level element
+<p> it is a paragraph tag and it is a block level element
+<a href="..." ref=".." >this is a anchor tag also knows as link tag <a/>   inline element
+<br>  to break the line or words or paragraph to next line
+<pre></pre>  display the words and sentences as it is in the vs code with proper spacing and distance
+< img src="" alt="" width="" height="" > alt is: text for an image , this is for the image adding in the webpage
+
+
+<-----HTML Styles----->
+style="color:red"  this is used to add color to text 
+style="font-size:60px"  this is for increase  the font that is required 
+style="font-family:TimesNewRoman" this is for the required font sizing
+style="text-align:center"  this is to align the text to the center
+style="background-color: red"  this for the background color
+
+<-----HTML Text Formating------>
+
+    <b> - Bold text
+    <strong> - Important text
+    <i> - Italic text
+    <em> - Emphasized text
+    <mark> - Marked text
+    <small> - Smaller text
+    <del> - Deleted text
+    <ins> - Inserted text
+    <sub> - Subscript text
+    <sup> - Superscript text
+    <abbr> - Defines an abbreviation or acronym
+    <address> - 	Defines contact information for the author/owner of a document
+    <bdo> -	Defines the text direction
+    <blockquote> - Defines a section that is quoted from another source
+    <cite> - Defines the title of a work
+    <q> -	Defines a short inline quotation
+
+
+----------------------------all the above text formating is inline elements---------------------------
+
+ -----------------------------------------------------------------------------
+|  	HTML elements can be broadly categorized into one of two categories:	|
+|													|
+|   		Inline Elements: <span>, <a>, <strong>, <img> etc.			|
+|    		Block Elements: <p>, <div>, <h1>, <figure> etc.				|
+|													|
+-------------------------------------------------------------------------------	
+
+HTML comment => <!-- Text here -->
+	
+
+HTML colors
+rgb(255, 99, 71) - rgb(red, green, blue)
+rgba(255, 99, 71, 0.5) - rgba(red, green, blue, alpha)
+HEX Color Values -  #rrggbb
+HSL Color Values - hsl(hue, saturation, lightness)
+
+		
+<--------HTML Links----------->
+<a herf="url">link text</a>
+to display the link in a new tab use : target
+<a href="url" target="_blank or _parent or _self or _top">scjbasc</a>
+
+
+        Adding an image link in a webpage done by adding <a href="..." ><img  src=".." alt=".." style="..."  >  </a>
+example  <a href="default.asp">
+<img src="smiley.gif" alt="HTML tutorial" style="width:42px;height:42px;">
+</a> 
+
+button as link - <button onclick-"
+    Button
+    <button onclick="">HTML BUTTON</button>
+
+bookmark using link and id => takes the user to the required section of the page
+example:  <a href="#C4">Jump to Chapter 4</a>  
+<h1 id="C4" ></h1>
+
+
+<--------HTML Images--------->
+
+<img src="link of the image / name " alt ="description of the image">
+<img src="url" alt="text" style="width:200px; height:300px;">  --declare the style inside the <img> tag
+
+<img src="workplace.jpg" alt="Workplace" usemap="#workmap">    //used to make i image clickable and add link or 
+<map name="workmap">						//anything else to it.
+<area shape="rect" coords="34, 44, 270, 350" href="computer.htm">   //coordinates of image added inside coords
+</map>
+
+
+
+<--------HTML tables--------->
+<table>
+
+<tr>
+<th>Column name1</th>
+<th>Column name2</th>
+<th>Column name3</th>
+<th>Column name4</th>			//th is table header.
+</tr>
+
+<tr>					//tr is table row.
+<td>Row 1</td>				//td is table data.
+<td>Row 2</td>
+<td>Row 3</td>
+<td>Row 4</td>
+</tr>
+
+</table>
+
+
+table borders---
+table, th, td {
+  border: 1px solid black;
+}
+to avoid double line border
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+colspan
+it is used to add the heading to col rows together like 
+ _________________________________
+|___///////_____|_______|_________|	<==Example
+|	|	|	|	  |
+|	|	|	|	  |
+|	|	|	|         |
+-----------------------------------
+
+
+rowspan
+similar to colspan it is used to add 2 row together like
+
+ _________________________________
+|_______|_______|_______|_________|	<==Example
+|///////|_______|_______|_________|
+|_______|_______|_______|_________|
+|	|	|	|         |
+-----------------------------------
+
+Zebra styling for the tables column and rows===> tr:nth-child(even) {
+ 						 background-color: #D6EEEE;
+						}
+tr:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.4);
+}
+
+th:nth-child(even),td:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.4);
+}
+
+the :hover selector on tr to highlight table rows on mouse over
+tr:hover {background-color: #D6EEEE;}
+
+
+
+<-------HTML List-------->
+
+<ol></ol>  ordered list (numbers yetat list name chya nantar)
+<ul></ul>  un-ordered list
+
+<li></li>  list  yachya ata names addn karawh
+
+
+<dl> description list
+<dt>  defines the term (name)
+<dd>   describes each term
