@@ -212,7 +212,55 @@ Inline Elements => does not start on a new line, only takes up as much width
 div {			//to assign the div inside elements to be inside 
   width:300px;
   margin:auto;
+  float: left or right   // this allows to 
 }
 </style> 
+
+//
+
+<div class=""> this is the class component </div>
+<h1 id="myHeader">this is id </h1>    //class name can be used by multiple HTML elements, while an id name must only be used by one HTML element within the page
+
+
+<-----------HTML Layout Elements------------>
+
+    <header> - Defines a header for a document or a section
+    <nav> - Defines a set of navigation links
+    <section> - Defines a section in a document
+    <article> - Defines an independent, self-contained content
+    <aside> - Defines content aside from the content (like a sidebar)
+    <footer> - Defines a footer for a document or a section
+    <details> - Defines additional details that the user can open and close on demand
+    <summary> - Defines a heading for the <details> element
+
+
+
+<-----------Semantic Elements------------>
+describes its meaning to both the browser and the developer.
+
+
+    <article>	<figure>	<figcaption>	<header>
+    <aside>	<footer>	<details>	<main>
+    <mark>	<section>	<summary>	<time>
+    <nav>
+    
+    
+
+
+<------------HMTL Form------------->
+
+-->collect user input.
+<form>this element is container for diff input elements</form>
+<form>
+<label for="fname">First name:</label>  defines a label for many form elements.
+<input type="text"> 			Displays a single-line text input field
+<input type="radio"> 			Displays a radio button (for selecting one of many choices)
+<input type="checkbox"> 		Displays a checkbox (for selecting zero or more of many choices)
+<input type="submit"> 			Displays a submit button (for submitting the form)
+<input type="button"> 			Displays a clickable button</from>
+
+</form>
+    
+
 
 
