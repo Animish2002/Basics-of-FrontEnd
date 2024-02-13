@@ -20,3 +20,8 @@ Array Function
 18) splice => add/remove specific element in the array
 19) toString() - method returns a string with all array values separated by commas
 20) unshift() - adds new items to the beginning of an array
+
+
+-Arrow function scope is global
+
+-Higher order and callback function => a func that takes a function as an argument.
