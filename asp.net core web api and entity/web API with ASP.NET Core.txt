@@ -1,0 +1,17 @@
+Create a web API with ASP.NET Core
+
+-GET /api/todoitems =>  Get all to-do items
+-GET /api/todoitems/{id} => Get an item by ID
+-POST /api/todoitems   =>  Add a new item
+-PUT /api/todoitems/{id}   =>  Update an existing item
+-DELETE /api/todoitems/{id}  => Delete an item    
+
+Prerequisites
+-In visual studio create project add templete ASP.NET and web devlopment 
+
+
+Add a NuGet package
+-Microsoft.EntityFrameworkCore.InMemory
+
+Add a model class
+Add a database context

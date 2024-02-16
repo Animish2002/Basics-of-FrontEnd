@@ -1,0 +1,10 @@
+- React is open scoure library for building user interfaces
+- Not a framework, focus on UI
+- Used by facebook
+
+to create a React app : npx create-react-app ____  this command is used
+to run a react code on local devices use :  npm start
+
+react is declarative
+
+react native is used for building mobile applications
