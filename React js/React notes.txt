@@ -1,3 +1,14 @@
+-Emmet
+Emmet does fulfill what they promise, you can use short expressions to generate HTML markup, CSS.
+Examples:
+1.  ! => for html skeleton 
+2.  div{This is a div}  =>   <div>This is a div </div>
+3.  ul>li  =>   <ul> <li></li> </ul>
+4.  ul>li*3>a  =>   ul inside 3 li within a tags
+etc etc....!
+
+
+
 - React is open scoure library for building user interfaces
 - Not a framework, focus on UI
 - Used by facebook

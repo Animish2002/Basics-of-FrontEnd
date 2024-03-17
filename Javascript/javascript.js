@@ -192,10 +192,69 @@
 // console.log(arr.reverse());
 
 //Sum of all arrays
-const arr =[1,2,3,4];
-var sum = 0;
-for(let i=0 ;i<arr.length ;i++){
-    sum += arr[i];
-}
+// const arr =[1,2,3,4];
+// var sum = 0;
+// for(let i=0 ;i<arr.length ;i++){
+//     sum += arr[i];
+// }
 
-console.log(sum);
+// console.log(sum);
+
+
+
+//closure a function bind together with its lexical scope
+// function x(){
+//     var a=7;
+//     function y(){
+//         console.log(a);
+//     }
+//     y();
+// }
+// x();
+
+//setTimeout & closures
+// function x(){
+//     for (let i=1; i<=5; i++){
+//            setTimeout(function(){
+//         console.log(i);
+//     },i * 1000);
+// }
+    
+// }
+// x();
+
+
+//function statement aka function declaration
+// function a(){
+//     console.log("a is called");
+// }
+
+//fucntion expression
+// var c = function xyz(){
+//     console.log("b is called")
+// }
+
+//Anonymous Function
+// function (){
+
+// }
+
+//Named Function expression
+// var c = function xyz(){
+//     console.log("b is called")
+// }
+// xyz();
+
+//First Class Functions=> the ability of functions to be used as values and can be 
+// passed in as an argument and can be returned from them 
+
+//Callback functions
+//function that you pass in another function
+//ex
+
+function x(){
+
+}
+x(function y(){
+
+})
