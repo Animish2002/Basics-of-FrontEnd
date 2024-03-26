@@ -10,7 +10,6 @@
 
 // console.log(b);
 
-
 // printName();
 // console.log(a);
 // var a = 12;
@@ -31,14 +30,12 @@
 // const b =100;
 // var c = 12;
 
-
 // // console.log(c);
 
 // const a = true;
 // const b = 'true';
 
 // console.log(a == b)
-
 
 // const arr = "abcba";
 // function maxElement(arr){
@@ -57,7 +54,7 @@
 // const factorial = 1;
 // var ans =1;
 // for(let i=factorial ; i>1 ; i--){
-//     ans = ans * i; 
+//     ans = ans * i;
 // }
 // console.log(ans);
 
@@ -103,7 +100,6 @@
 // const largestElement = findLargestInNestedArray(nestedArray);
 // console.log("The largest element in the nested array is:", largestElement);
 
-
 //Fibonacci's series
 
 // let n = 8;
@@ -127,7 +123,7 @@
 //         if(arr[i]>arr[j]){
 //             const temp = arr[i];
 //             arr[i] = arr[j];
-//             arr[j] = temp; 
+//             arr[j] = temp;
 //         }
 //     }
 // }
@@ -144,10 +140,9 @@
 //         arr[j-1] = arr[j];
 //         arr[j] = temp;
 //         j--;
-//     } 
+//     }
 // }
 // console.log(arr);
-
 
 //String palindrome
 
@@ -170,7 +165,6 @@
 // else{
 //     console.log("noo");
 // }
-
 
 //Reverse a string
 // using split() method - splits string object into arr of strings
@@ -200,8 +194,6 @@
 
 // console.log(sum);
 
-
-
 //closure a function bind together with its lexical scope
 // function x(){
 //     var a=7;
@@ -219,10 +211,9 @@
 //         console.log(i);
 //     },i * 1000);
 // }
-    
+
 // }
 // x();
-
 
 //function statement aka function declaration
 // function a(){
@@ -245,16 +236,61 @@
 // }
 // xyz();
 
-//First Class Functions=> the ability of functions to be used as values and can be 
-// passed in as an argument and can be returned from them 
+//First Class Functions=> the ability of functions to be used as values and can be
+// passed in as an argument to other functions and can be returned from them
 
 //Callback functions
 //function that you pass in another function
 //ex
+//functions are first class citizens in js
 
-function x(){
+//what are callback functions??
+//=> func are first class citizens in js , so when you take a function and pass
+//it into another fucntion this is nothing but function callback
+//callback fun help to do async things inside javascript
 
+// setTimeout(function () {
+//   //step 1
+//   console.log("timer");
+// }, 5000);
+
+// function x(y) {
+//   //step 2 x calls y so in y again x is called x is printed
+//   console.log("x");
+//   y(); //step 3 y is called
+// }
+// x(function y() {
+//   console.log("y");
+// });
+
+// Callback functions
+//js is single threaded Synchronous  language , so it runs code line by line using its callstack if one function takes a lot of time
+//to execute then other functions or remaining code will take a lot of time to execute , so use asynchronous so that it will take the
+//function in the callstack and keep it executing it along with the other code as well
+//Functions like callbacks, Promises, and async/await allow you to handle tasks such as /////
+//I/O operations or time-consuming computations without blocking the main thread.//////////
+// example
+
+// function attachEventListeners() {
+//   let count = 0;
+//   document.getElementById("clickMe").addEventListener("click", function xyz() {
+//     console.log("button clicked", ++count);
+//   });
+// }
+// attachEventListeners();    //fun with closure with asyn eventlistner
+
+//Event Loops
+
+//Higher order functions=> a function which takes another function as an argument or returns a function from it is called
+// higher order function
+// example
+
+function x() {
+  // x is a callback function
+  console.log("x");
 }
-x(function y(){
 
-})
+function y(x) {
+  // y here is a higher order function ,here it takes x as a argument
+  x();
+}
