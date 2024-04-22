@@ -8,6 +8,11 @@ Javascript is Interpretted + compiler language
 Java script is synchronous single threaded language
 Lossely typed language
 
+Things learned:  .///////Important/////////////
+1. map method is used when we want transformation of whole array.
+2. filter is used when we want to filter the arrar to obtain required value.
+3. reduce is used when we want to reduce the array to single value eg (max, min, avg, sum, difference etc).
+
 1) Evert thing happens in java script is in "Execution Context"
 
 Execution Context has 2 component:

@@ -281,16 +281,39 @@
 
 //Event Loops
 
-//Higher order functions=> a function which takes another function as an argument or returns a function from it is called
+//Higher order functions=> a function which takes another function as an argument or returns a function from it is calledx
 // higher order function
 // example
 
-function x() {
-  // x is a callback function
-  console.log("x");
-}
+// function x() {
+//   // x is a callback function
+//   console.log("x");
+// }
 
-function y(x) {
-  // y here is a higher order function ,here it takes x as a argument
-  x();
-}
+// function y(x) {
+//   // y here is a higher order function ,here it takes x as a argument
+//   x();
+// }
+
+///Filter
+// const arr = [5, 1, 3, 2, 6];
+
+// const output = arr.filter((x) => {
+//   return x > 4;
+// });
+
+// console.log(output);
+
+//////Map  use to transform an array
+
+///reduce
+//sum of n numbers
+
+const arr = [1, 2, 3, 4, 5, 6];
+
+const sum = arr.reduce(function (acc, curr) {
+  acc += curr;
+  return acc;
+}, 0);   //initial value aste hi wali
+
+console.log(sum);
