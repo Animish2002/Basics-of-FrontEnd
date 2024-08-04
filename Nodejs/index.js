@@ -1,21 +1,27 @@
-// const add = (a,b) =>{
-//     return a + b;
-// }
+const express = require("express");
 
-// console.log(add(1,3));
+const { connectMongoDb } = require("./connection");
 
-// const str = () =>{
-//     console.log("Hayyy there!!!");
-// } 
+const { logReqRes } = require("./middlewares"); 
 
-// str();
+const userRouter = require("./routes/user");
 
-const obj ={
-    value: 20,
-    myFunction: () =>{
-        console.log(this);
-    },
 
-};
+const app = express();
+const PORT = 8080;
 
-obj.myFunction();
+//connection
+connectMongoDb("mongodb://127.0.0.1:27017/youtube-app-1").then(() =>
+  console.log("MongoDb Connected!")
+);
+
+//middlewares
+app.use(express.urlencoded({ extended: false }));
+app.use(logReqRes("log.txt"));
+
+//Routes
+app.use("/api/users", userRouter);
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

@@ -1,0 +1,17 @@
+1. Promises come as a result of asynchronousn tasks in javascript
+2. While calling external json data through fetch(), we get a promise on console.
+3. await can only be used with async
+4. async function getData(){
+    const responseFromServer= await fetch(' Link to json data');
+console.log(responseFromServer);
+} is an example of using async and await.
+
+5. For better output of json data we can use the console.log statement as:- 
+console.log(await resultFromServer.json());
+
+6. fetch() can also be executed as follows:- 
+fetch(' Link to Json data').then( (data) => {
+console.log(data);
+}).catch( (error) => {
+console.log(error);
+});

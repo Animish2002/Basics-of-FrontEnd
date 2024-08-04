@@ -309,11 +309,17 @@
 ///reduce
 //sum of n numbers
 
-const arr = [1, 2, 3, 4, 5, 6];
+// const arr = [1, 2, 3, 4, 5, 6];
 
-const sum = arr.reduce(function (acc, curr) {
-  acc += curr;
-  return acc;
-}, 0);   //initial value aste hi wali
+// const sum = arr.reduce(function (acc, curr) {
+//   acc += curr;
+//   return acc;
+// }, 0);   //initial value aste hi wali
 
-console.log(sum);
+// console.log(sum);
+
+function sum(x, y) {
+  return x + y;
+  // console.log("hi");
+}
+console.log(sum(1, 2));

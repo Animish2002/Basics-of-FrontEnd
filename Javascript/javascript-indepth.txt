@@ -19,13 +19,13 @@ Execution Context has 2 component:
 -----------------------------------------------------------------
 Memory / variable env           | code / thread of execution	|
 -----------------------------------------------------------------
-This is were every variable	| every line of code executed	|
+This is were every variable	````| every line of code executed	|
 and function is stored as       |				|
 key value pair                 	| one command at a time in a	|
-                 		| paticular sequence		|
-                 		|				|
-                 		|				|
-                 		|				|
+                 				| paticular sequence		|
+                 				|				|
+                 				|				|
+                 				|				|
 -----------------------------------------------------------------
 
 2) Execution context is create in two phases

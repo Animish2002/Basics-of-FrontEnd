@@ -1,8 +1,0 @@
-Node js notes
-
-
--Node.js provides a runtime environment for executing JavaScript code outside of a web browser.
--It is built on Google's V8 JavaScript engine, used in the Chrome web browser.
--When executing JavaScript code with Node.js in a terminal, it uses the V8 engine to interpret and execute the code.
--node js is made up of basically c++ embedded with javascript
-
