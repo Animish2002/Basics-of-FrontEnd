@@ -384,6 +384,8 @@ Memory / phase 1                | code / phase 2		|
 12) What is Anonymous function?
     What are higher order functions?
     What are first class functions?
+=>First Class Functions=> the ability of functions to be used as values and can be
+			  passed in as an argument to other functions and can be returned from them
 
 	Function statement: function created with function key word
 		function a() { console.log ('a called'); }

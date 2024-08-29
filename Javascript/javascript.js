@@ -318,8 +318,20 @@
 
 // console.log(sum);
 
-function sum(x, y) {
-  return x + y;
-  // console.log("hi");
+// function sum(x, y) {
+//   return x + y;
+//   // console.log("hi");
+// }
+// console.log(sum(1, 2));
+
+function a() {
+  var b = 10;
+
+  function c() {
+    console.log(b);
+  }
+  return c;
 }
-console.log(sum(1, 2));
+
+var z = a();
+z();
