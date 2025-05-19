@@ -386,6 +386,7 @@ Memory / phase 1                | code / phase 2		|
     What are first class functions?
 =>First Class Functions=> the ability of functions to be used as values and can be
 			  passed in as an argument to other functions and can be returned from them
+    What are CallBack function => A function that is passed as an argument to another function is 				called a callback function used for async programming
 
 	Function statement: function created with function key word
 		function a() { console.log ('a called'); }

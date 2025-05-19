@@ -1,0 +1,20 @@
+javascript is loosely type language
+
+a variable declared does not have a type to it it can be changes to anyother type and js will be fine with it but this is not a 
+good thing 
+
+enters typescript which lets us define type to various type 
+
+when define a variable in ts do by const x:number = 1 or const x:string = "string"
+
+the final file what we alway run is the javascript file not the ts file 
+ts is just a syntactical language that gets compiled down to javascript 
+
+to convert ts code to js  use command => tsc -b
+
+different types in ts 
+number, string, boolean, null, undefined
+
+function sum(a: number, b: number):number here we define the output must also return number 
+ 
+

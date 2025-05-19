@@ -324,14 +324,30 @@
 // }
 // console.log(sum(1, 2));
 
-function a() {
-  var b = 10;
+// function a() {
+//   var b = 10;
 
-  function c() {
-    console.log(b);
-  }
-  return c;
-}
+//   function c() {
+//     console.log(b);
+//   }
+//   return c;
+// }
 
-var z = a();
-z();
+// var z = a();
+// z();
+
+// function fetchData(callback) {
+//   setTimeout(() => {
+//     const data = "Sample Data";
+//     callback(data);
+//   }, 1000);
+// }
+
+// fetchData((data) => {
+//   console.log("data got as", data);
+// });
+
+var a = undefined;
+var b = null ;
+
+console.log(a === b);
