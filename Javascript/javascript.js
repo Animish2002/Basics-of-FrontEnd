@@ -347,7 +347,37 @@
 //   console.log("data got as", data);
 // });
 
-var a = undefined;
-var b = null ;
+// var a = undefined;
+// var b = null ;
 
-console.log(a === b);
+// console.log(a === b);
+
+// console.log(a);
+
+// const a = 12;
+
+//curring in javascript
+// function sum(a) {
+//   return function (b) {
+//     return function (c) {
+//       return a + b + c;
+//     };
+//   };
+// }
+
+// console.log(sum(1)(2)(3));
+// //or with arrow function
+
+// const sum2 = (a) => (b) => (c) => a + b + c;
+// console.log(sum2(3)(2)(5));
+
+function x() {
+  for (var i = 1; i <= 5; i++) {
+    setTimeout(function (params) {
+      console.log(i);
+    }, i * 1000);
+  }
+  console.log("Hello from x");
+}
+
+x();

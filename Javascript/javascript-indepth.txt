@@ -824,7 +824,7 @@ Memory / phase 1                | code / phase 2		|
 	|Object.preventExtensions |	X	|  Y	|  Y	|  Y	|
 	-----------------------------------------------------------------
 
-26) Promise:
+26) Promise: promises is a object that represents the eventual completion or failure of an async operation   
 	Perfomr aync operation , to remove callback hell
 		const myPromise = new Promise((resolve, reject) => {  
     			let condition;  
