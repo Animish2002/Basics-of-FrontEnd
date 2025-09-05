@@ -92,7 +92,7 @@ Memory / phase 1                | code / phase 2		|
 	---------
 
 3) Hoisting:
-	Hoisting is a phinomenan in javascript were we can access variable and function before initialized it with out any error.
+	Hoisting is a phenomenen in javascript were we can access variable and function before initialized it with out any error.
 
 	var x = 10;
 	function getName() { console.log('Power javascript') }
@@ -222,6 +222,19 @@ Memory / phase 1                | code / phase 2		|
 	  |
 
 	Error types: ReferenceError, SyntaxError & TypeError
+
+	- var
+	Hoisted to the top of its scope.
+	Initialized with undefined automatically.
+	You can use it before the declaration (but it’ll be undefined).
+
+    - let and const
+	Also hoisted to the top of their scope.
+	Not initialized automatically.
+	They stay in the Temporal Dead Zone (TDZ) from the start of the scope until their declaration line.
+	Accessing them before declaration → ReferenceError.
+
+	👉 So the difference is not about whether they are hoisted, but how they are initialized after hoisting.
 
 9) Block scope: is also known as compound statment (group multiple statments in a block)
 	if(true) // Error SyntaxError: unexpected end of input
