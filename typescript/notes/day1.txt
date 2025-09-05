@@ -1,0 +1,51 @@
+
+Types vs Interfaces
+
+    Both define shape of objects.
+    Interfaces → object contracts, support extends, declaration merging.
+    Types → unions, primitives, intersections, tuples.
+    When to use:
+     Interface → objects, classes, API contracts.
+     Type → unions, advanced type ops.
+
+Generics
+
+    Write reusable, type-safe code.
+    Syntax: <T> (placeholder type).
+
+    Examples:
+        function identity<T>(val: T): T { return val; }
+
+    Constraints → <T extends SomeType>
+    Use in functions, interfaces, classes.
+
+Enums
+
+    Define named constants.
+    Numeric Enums → auto-increment values.
+    String Enums → better readability.
+    Const Enums → optimized performance.
+
+Example:
+
+enum Status { Success="SUCCESS", Fail="FAIL" }
+
+
+Q: Difference between types and interfaces?
+A:
+Both are used to define the shape of data. Interfaces are mainly used for object contracts and allow declaration merging, 
+making them great for API definitions and classes. Types are more flexible — they can represent unions, intersections, 
+primitives, and tuples. So, I usually prefer interfaces for objects/classes and types for more complex or union-based structures.
+
+Q: Why do we use Generics in TypeScript?
+A:
+Generics let us write reusable and type-safe code. Instead of hardcoding types, we use placeholders like <T>, so the same 
+function or class can work with multiple types while still keeping type safety. For example, a generic function 
+identity<T>(value: T): T can accept both strings and numbers without losing type information. This helps avoid duplication and 
+increases flexibility.
+
+Q: What are Enums and when would you use them?
+A:
+Enums represent a set of named constants. They make the code more readable and maintainable. For example, instead of using plain 
+strings like "SUCCESS" or "FAIL", I can define a Status enum. TypeScript supports numeric enums, string enums, and const enums. 
+I prefer string enums for debugging readability, while const enums are great for performance optimization.

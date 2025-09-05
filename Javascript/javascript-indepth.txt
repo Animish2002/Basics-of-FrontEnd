@@ -436,6 +436,19 @@ Memory / phase 1                | code / phase 2		|
 
 13) Callback function: 
 	What is callback function
+	=> When you take a function and pass it as an argument to another function, that function that is passed is knw as a callback function.
+	
+	function greet(name, callback) {
+  		console.log("Hello, " + name);
+  		callback(); // calling the function that was passed
+	}
+
+	function sayGoodbye() {
+		console.log("Goodbye!");
+	}
+
+	greet("Animish", sayGoodbye);
+
 
 	Javascript is synchronous and single-threaded language
 

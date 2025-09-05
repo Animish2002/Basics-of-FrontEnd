@@ -15,3 +15,58 @@ console.log(data);
 }).catch( (error) => {
 console.log(error);
 });
+
+A Promise is an object that represents the eventual completion (success) or failure of an asynchronous operation.
+"A Promise is a cleaner alternative to callbacks for handling asynchronous code. It represents a value that may be available now, later, or never.”
+
+States of a Promise
+
+A Promise has 3 possible states:
+
+Pending → Initial state (operation not completed yet).
+Fulfilled → Operation completed successfully → .then() is called.
+Rejected → Operation failed → .catch() is called.
+
+Why Promises?
+
+Solve callback hell (nested callbacks problem).
+Provide a clean, chainable way to handle async code.
+Work perfectly with async/await.
+
+
+Promise Chaining 
+fetchData()
+  .then(data => processData(data))
+  .then(processed => saveData(processed))
+  .then(result => console.log("Saved:", result))
+  .catch(err => console.log("Error:", err));
+
+  Each .then() passes its return value to the next .then().
+
+Promise Methods
+
+Promise.all([p1, p2, p3]) → runs promises in parallel, waits until all succeed or one fails.
+Promise.race([p1, p2, p3]) → returns result of the first promise that settles (success or failure).
+Promise.allSettled([p1, p2, p3]) → waits for all promises, returns results whether resolved or rejected.
+Promise.any([p1, p2, p3]) → returns the first fulfilled promise (ignores rejections).
+
+Promises vs Callbacks
+Callbacks: Can lead to “callback hell” (nested pyramid code).
+Promises: Provide chaining, error handling, and better readability.
+👉 Interview line:
+“Promises were introduced in ES6 to handle async tasks more effectively, providing a structured way to write non-blocking code compared to traditional callbacks.”
+
+Sample Interview Answer
+
+"A Promise in JavaScript is an object that represents the eventual completion or failure of an asynchronous operation. It acts as a placeholder 
+for a value that we’ll get in the future. A Promise can be in three states — pending, fulfilled, or rejected. When it’s fulfilled, the .then() 
+method executes, and when it’s rejected, the .catch() method executes. We can also use .finally() for cleanup after completion.
+The main reason we use Promises is to avoid callback hell and make asynchronous code easier to read and maintain. Unlike nested callbacks, 
+Promises allow chaining, so the result of one async operation can be passed to the next in a cleaner way.
+Apart from basic usage, Promises also provide utility methods like Promise.all, Promise.race, Promise.allSettled, and Promise.any to handle multiple 
+asynchronous operations efficiently. For example, Promise.all is useful when I want all operations to complete before moving forward, 
+while Promise.race gives me the result of the first one that settles.
+On top of that, ES8 introduced async/await, which is built on Promises. It lets us write asynchronous code in a synchronous style, 
+making it more readable. For instance, instead of chaining .then(), I can just await a Promise inside an async function.
+So, in short, Promises provide a structured, scalable way to handle asynchronous tasks compared to callbacks, and they integrate 
+seamlessly with async/await for modern JavaScript development."

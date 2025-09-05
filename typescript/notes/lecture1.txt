@@ -18,3 +18,70 @@ number, string, boolean, null, undefined
 function sum(a: number, b: number):number here we define the output must also return number 
  
 
+Interfaces
+
+Blueprint for objects (defines structure).
+Ensures all required properties are present with correct types.
+interface User {
+  name: string;
+  email: string;
+  phone: number;
+}
+
+Types
+More flexible than interfaces.
+Can define primitives, unions, intersections, tuples, objects.
+
+(a) Primitives
+type Age = number;
+type Username = string;
+
+
+(b) Union (OR type)
+type PaymentStatus = "pending" | "paid" | "unpaid";
+
+
+(c) Intersection (combine types)
+type Person = { name: string };
+type Employee = { role: string };
+type Staff = Person & Employee;
+
+
+(d) Tuple (fixed order + types in array)
+let person: [string, number]; // ["Animish", 21]
+
+Generics
+Placeholder for a type (<T>).
+Helps write reusable + type-safe code.
+function identity<T>(value: T): T {
+  return value;
+}
+identity<number>(10);      // works
+identity<string>("hello"); // works
+
+T takes the type at runtime and keeps it safe.
+
+Enums
+
+Set of named constants (fixed values).
+
+Prevents invalid values.
+
+enum InvoiceStatus {
+  Pending = "PENDING",
+  Paid = "PAID",
+  Unpaid = "UNPAID",
+}
+
+
+Use when you have predefined options (e.g., invoice stages, directions, roles).
+
+Quick Summary
+
+Interface → Blueprint for objects/classes.
+
+Type → Flexible, supports union, intersection, tuples, primitives.
+
+Generics → Reusable + type-safe code, uses <T> as placeholder.
+
+Enum → Fixed set of named constants.
