@@ -1,0 +1,42 @@
+📌 Async & Await in JavaScript
+
+JS is single-threaded & synchronous → uses Promises, async/await, and Web APIs to handle async tasks without blocking.
+
+async function → always returns a Promise.
+
+await keyword → pauses execution inside an async function until the Promise resolves (without blocking the main thread).
+
+
+🔑 Key Points
+
+fetch() returns a Promise → must await it.
+
+response.json() also returns a Promise → must await it.
+
+Errors should be handled with try...catch.
+
+
+⏱ Multiple API Calls
+
+1. Sequential (one after another)
+
+const res1 = await fetch(url1);
+const res2 = await fetch(url2);
+
+→ Slower (total = sum of times).
+
+
+2. Parallel (start together, await later)
+
+const [res1, res2] = await Promise.all([fetch(url1), fetch(url2)]);
+
+→ Faster (total = longest time).
+
+
+
+🚨 Note
+
+Promises don’t stay in the call stack → handled by Web APIs + Event Loop.
+
+await pauses only the current async function, not the entire program.
+
