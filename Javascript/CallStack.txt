@@ -1,0 +1,36 @@
+The call stack is where JavaScript keeps track of function execution. 
+It works in a LIFO manner. Functions get pushed when called and popped when they return. 
+If an error occurs, the stack trace shows the chain of function calls
+
+
+
+What is the Call Stack?
+
+-The call stack is a data structure (stack = LIFO: Last In, First Out).
+-It keeps track of function execution in JavaScript.
+-Each time a function is called → it’s pushed onto the stack.
+-When the function finishes → it’s popped off.
+
+
+🔹 Example 1 (Simple)
+function first() {
+  console.log("First function");
+  second();
+  console.log("Back to first");
+}
+
+function second() {
+  console.log("Second function");
+}
+
+first();
+
+
+
+Execution Flow in Call Stack:
+1. first() pushed → executes console.log("First function").
+2. Calls second() → pushed on top → executes console.log("Second function").
+3. second() finishes → popped off.
+4. Resume inside first() → executes console.log("Back to first").
+5. first() finishes → popped off.
+6. Stack is empty.

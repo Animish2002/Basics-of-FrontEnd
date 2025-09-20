@@ -1,0 +1,16 @@
+👉 “The callback queue (or macro-task queue) holds asynchronous callbacks like setTimeout and I/O operations. 
+The event loop only moves them to the call stack once the stack is empty and all microtasks (like promises) are processed.”
+
+What is the Callback Queue?
+
+The callback queue is where asynchronous callback functions (macro-tasks) wait before being executed by the event loop.
+These callbacks are moved to the queue after Web APIs / Node APIs finish their work.
+The event loop then pushes them into the call stack when it is empty and after microtasks are cleared.
+
+🔹 Examples of tasks that go into the Callback Queue:
+
+setTimeout
+setInterval
+setImmediate (Node.js)
+I/O callbacks (file system, network requests in Node.js)
+UI rendering events (in browser)

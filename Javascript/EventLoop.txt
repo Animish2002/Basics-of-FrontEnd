@@ -1,0 +1,37 @@
+Event Loop in JavaScript runtime environment, not React, not specific to Node only.
+It’s part of the JS engine + runtime model that makes async execution possible.
+it’s handled by libuv
+
+┌───────────────────────────────┐
+│          Call Stack           │
+│ Executes synchronous code     │
+└───────────────▲───────────────┘
+                │
+                │ Async tasks sent out
+                │
+┌───────────────────────────────┐
+│    Web APIs / Node APIs       │
+│ (setTimeout, fetch, I/O etc.) │
+└───────────────▲───────────────┘
+                │ Results ready
+                │
+ ┌───────────────────────┐   ┌────────────────────────┐
+ │   Microtask Queue     │   │   Macro/Callback Queue │
+ │ (Promises, MutationO.)│   │ (setTimeout, setIntv.) │
+ └───────────▲───────────┘   └──────────▲────────────┘
+             │                          │
+             └───────▶ Event Loop ◀─────┘
+                       │
+                       ▼
+┌───────────────────────────────┐
+│          Call Stack           │
+│ (Takes tasks from queues)     │
+└───────────────────────────────┘
+
+Step by step explaination 
+1. Call Stack: Runs console.log("A") → prints A.
+2. setTimeout: Sent to Web APIs → result placed in Macro Queue.
+3. Promise: Goes to Microtask Queue.
+4. console.log("D") runs → prints D.
+5. Event Loop: Stack empty → checks Microtask Queue first → prints C.
+6. Then takes one task from Macro Queue → prints B.
