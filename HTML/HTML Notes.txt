@@ -243,7 +243,8 @@ describes its meaning to both the browser and the developer.
     <aside>	<footer>	<details>	<main>
     <mark>	<section>	<summary>	<time>
     <nav>
-    
+    Header nav section aside main
+    figure figcaption article details footer
     
 
 
